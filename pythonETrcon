@@ -1,0 +1,14 @@
+#!/usr/bin/env python3
+import socket
+import sys
+
+host = "127.0.0.1"
+port = 27960
+
+text = sys.argv[1] # Replace sys.argv[1] by the command you want to run
+text = bytes(text, encoding='UTF8')
+
+sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+sock.connect((host, port))
+
+sock.send(b'\xFF\xFF\xFF\xFFrcon yourpassword yourcommand "%b"' % text ) # Replace "yourpassword" and "yourcommand"
